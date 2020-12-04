@@ -1,4 +1,4 @@
-project = "test-project"
+project = "waypoint-demo"
 
 app "app1" {
     build {
@@ -9,18 +9,21 @@ app "app1" {
                 tag   = "latest"
             }
         }
+
     }
 
     deploy {
         use "kubernetes" {
+            annotations = {
+                "version": "v1"
+            }
+
             probe_path   = "/"
             service_port = 80
         }
     }
 
-
     release {
-        use "kubernetes" {
-        }
+        use "kubernetes" {}
     }
 }
